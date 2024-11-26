@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+
+{% block cuerpo %}
+<center>
+    <div class="row justify-content-center"> <!-- Fila centrada -->
+        <div class="col-sm-12 col-md-6 col-lg-4 col-xl-4"> <!-- Columna centrada -->
+            <center><h1>Editar Cliente</h1></center>
+            <div class="card mx-auto" style="max-width: 600px;"> <!-- Tarjeta centrada -->
+                <div class="card-body">
+                    <form action="/editarCliente/" method="POST"> {% csrf_token %}
+                        <div class="form-group">
+                            <input type="int" id="id_cliente" name="id_cliente" class="form-control" value="{{misClientes.id_cliente}}" placeholder="ID Cliente" maxlength="6" required>
+                        </div>
+                        <br>
+                        <div class="form-group">
+                            <input type="text" id="nombre" name="nombre" class="form-control" value="{{misClientes.nombre}}" placeholder="Nombre" maxlength="20" required>
+                        </div>
+                        <br>
+                        <div class="form-group">
+                            <input type="tel" id="Telefono" name="Telefono" value="{{misClientes.Telefono}}" class="form-control" placeholder="Teléfono" maxlength="10" required>
+                        </div>
+                        <br>
+                        <div class="form-group">
+                            <input type="email" id="correo" name="correo" value="{{misClientes.correo}}" class="form-control" placeholder="Correo" maxlength="30" required>
+                        </div>
+                        <br>
+                        <div class="form-group">
+                            <input type="date" id="fecha" name="fecha" class="form-control" value="{{misClientes.fecha | date:'Y-m-d'}}" required>
+                        </div>
+                        <br>
+                        <div class="form-group">
+                            <input type="text" id="direccion" name="direccion" class="form-control" value="{{misClientes.direccion}}" placeholder="Dirección" maxlength="20" required>
+                        </div>
+                        <br>
+                        <div class="form-group py-2 text-center">
+                            <button type="submit" class="btn btn-primary btn-dark">Guardar Cliente</button>
+                        </div>
+                    </form>
+                </div>
+                
+            
+        </div> <!-- Fin de la columna -->
+    </div> <!-- Fin de la fila -->
+</center>
+{% endblock %}
