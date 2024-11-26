@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+
+{% block cuerpo %}
+<center>
+    <div class="row justify-content-center"> <!-- Fila centrada -->
+        <div class="col-sm-12 col-md-6 col-lg-4 col-xl-4"> <!-- Columna centrada -->
+            <center><h1>Editar Provedor</h1></center>
+            <div class="card mx-auto"> <!-- Tarjeta centrada -->
+                <div class="card-body">
+                    <form action="/editarProvedor/" method="POST"> {% csrf_token %}
+                        <div class="form-group">
+                            <input type="number" id="id_provedor" name="id_provedor" class="form-control" value="{{misProvedores.id_provedor}}"  minlength="1" maxlength="6" required >
+                        </div>
+                        <br>
+                        <div class="form-group">
+                            <input type="text" id="nombre" name="nombre" class="form-control" value="{{misProvedores.nombre}}" maxlength="20" required>
+                        </div>
+                        <br>
+                        <div class="form-group">
+                            <input type="tel" id="Telefono" name="Telefono" value="{{misProvedores.Telefono}}" class="form-control" required>
+                        </div>
+                        <br>
+                        <div class="form-group">
+                            <input type="text" id="sucursal" name="sucursal" class="form-control" value="{{misProvedores.sucursal}}" maxlength="50" required>
+                        </div>
+                        <br>
+                        <div class="form-group">
+                            <input type="text" id="direccion" name="direccion" class="form-control" value="{{misProvedores.direccion}}" maxlength="100" required>
+                        </div>
+                        <br>
+                        <div class="d-flex">
+                            <input type="time" id="HorarioE" name="HorarioE" class="form-control" value="{{ empleado.HorarioE }}" maxlength="20" required>
+                            <input type="time" id="HorarioS" name="HorarioS" class="form-control" value="{{ empleado.HorarioS  }}"  maxlength="100" required>
+                        </div>
+                        <br>
+                        <div class="form-group">
+                            <input type="number" id="id_producto" name="id_producto" class="form-control" value="{{misProvedores.id_producto}}" minlength="1" maxlength="10" required>
+                        </div>
+                        <br>
+                        <div class="form-group py-2 text-center">
+                            <button type="submit" class="btn btn-primary btn-dark">Guardar Pedido</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div> <!-- Fin de la columna -->
+    </div> <!-- Fin de la fila -->
+</center>
+{% endblock %}
