@@ -1,0 +1,81 @@
+{% extends "base.html" %}
+
+{% block cuerpo  %}
+{% load static %}
+<div class="row"> <!--la fila-->
+    <div class="col-sm-12 col-md-4 col-lg-4 col-xl-4"><!--Columna izquierda-->
+    <center><h1>Registrar Sucursal</h1></center>
+        <div class="card mx-5"><!--la tarjeta-->
+            <div class="card-body">
+                <form action="/registrarSucursal/" method="POST"> {% csrf_token %} <!--Falta Action-->
+                    <center><div class="form-group">
+                        <input type="number" id="id_sucursal" name="id_sucursal" class="form-control" placeholder="Id Sucursal" minlength="1" maxlength="6" required>
+                    </div>
+                    <br>
+                    <div class="form-group">
+                        <input type="text" id="nombre" name="nombre" class="form-control" placeholder="Nombre" maxlength="100" required>
+                    </div>
+                    <br>
+                    <div class="form-group">
+                        <input type="text" id="Direccion" name="Direccion" placeholder="Direccion" class="form-control" maxlength="100" required>
+                    </div>
+                    <br>
+                    <div class="form-group">
+                        <input type="text" id="Numero" name="Numero" class="form-control" placeholder="Numero" maxlength="100" required>
+                    </div>
+                    <br>
+                    <div class="d-flex">
+                        <input type="time" id="HorarioE" name="HorarioE" class="form-control" placeholder="HorarioE" maxlength="20" required>
+                        <input type="time" id="HorarioS" name="HorarioS" class="form-control" placeholder="HorarioS"  maxlength="100" required>
+                    </div>
+                    <br>
+                    <div class="form-group">
+                        <input type="text" id="Correo" name="Correo" class="form-control" placeholder="Correo" maxlength="100" required>
+                    </div>
+                    <hr></hr>
+                    <div class="form-group py-2">
+                        <button type="submit" class="btn btn-primary btn-dark">Guardar Sucursal</button>
+                    </div>
+                </center>
+                </form>
+            </div>
+        </div><!--la tarjeta-->
+    </div><!--Columna izquierda-->
+    <div class="col-sm-12 col-md-8 col-lg-8 col-xl-8"><!--Columna Derecha-->
+        <h1>Lista de Sucursales</h1>
+        <center><img class="w-50" src="{%static 'img/sucursal.jpg' %}" alt="corona" width="200"  /></center>
+        <!--La Tabla-->
+            <table class="table table-striped">
+                <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Id_Sucursal</th>
+                    <th scope="col">Nombre</th>
+                    <th scope="col">Direccion</th>
+                    <th scope="col">Numero</th>
+                    <th scope="col">HorarioE</th>
+                    <th scope="col">HorarioS</th>
+                    <th scope="col">Correo</th>
+                    <th>Opciones</th>
+                </tr>
+                </thead>
+                <tbody>
+                    {% for m in misSucursales  %}
+                    <tr>
+                        <td>{{forloop.counter}}</td>
+                        <td>{{m.id_sucursal}}</td>
+                        <td>{{m.nombre}}</td>
+                        <td>{{m.Direccion}}</td>
+                        <td>{{m.Numero}}</td>
+                        <td>{{m.HorarioE}}</td>
+                        <td>{{m.HorarioS}}</td>
+                        <td>{{m.Correo}}</td>
+                        <td> <a href="seleccionarSucursal/{{m.id_sucursal}}" class="btn btn-info">Editar</a></td><!--falta-->
+                        <td> <a href="borrarSucursal/{{m.id_sucursal}}" class="btn btn-danger">Borrar</a></td><!--falta-->
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div><!--Columna Derecha-->
+</div><!--la fila-->
+{% endblock  %}

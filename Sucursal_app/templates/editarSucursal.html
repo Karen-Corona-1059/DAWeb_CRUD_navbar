@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+
+{% block cuerpo %}
+<center>
+    <div class="row justify-content-center"> <!-- Fila centrada -->
+        <div class="col-sm-12 col-md-6 col-lg-4 col-xl-4"> <!-- Columna centrada -->
+            <center><h1>Editar Sucursal</h1></center>
+            <div class="card mx-auto"> <!-- Tarjeta centrada -->
+                <div class="card-body">
+                        <form action="/editarSucursal/{{sucursal.id_sucursal }}" method="POST"> {% csrf_token %} <!--Falta Action-->
+                            <center><div class="form-group">
+                                <input type="number" id="id_sucursal" name="id_sucursal" class="form-control" value="{{sucursal.id_sucursal }}" readonly minlength="1" maxlength="6" required>
+                            </div>
+                            <br>
+                            <div class="form-group">
+                                <input type="text" id="nombre" name="nombre" class="form-control" value="{{ sucursal.nombre }}" maxlength="100" required>
+                            </div>
+                            <br>
+                            <div class="form-group">
+                                <input type="text" id="Direccion" name="Direccion" value="{{ sucursal.Direccion }}" class="form-control" maxlength="100" required>
+                            </div>
+                            <br>
+                            <div class="form-group">
+                                <input type="number" id="Numero" name="Numero" class="form-control" value="{{ sucursal.Numero }}" maxlength="100" required>
+                            </div>
+                            <br>
+                            <div class="d-flex">
+                                <input type="time" id="HorarioE" name="HorarioE" class="form-control" value="{{ sucursal.HorarioE }}" maxlength="20" required>
+                                <input type="time" id="HorarioS" name="HorarioS" class="form-control" value="{{ sucursal.HorarioS  }}"  maxlength="100" required>
+                            </div>
+                            <br>
+                            <div class="form-group">
+                                <input type="text" id="Correo" name="Correo" class="form-control" value="{{ sucursal.Correo }}" maxlength="100" required>
+                            </div>
+                            
+                            <hr></hr>
+                            <div class="form-group py-2">
+                                <button type="submit" class="btn btn-primary btn-dark">Guardar Sucursal</button>
+                            </div>
+                        </center>
+                        </form>
+                </div>
+            </div>
+        </div> <!-- Fin de la columna -->
+    </div> <!-- Fin de la fila -->
+</center>
+{% endblock %}
