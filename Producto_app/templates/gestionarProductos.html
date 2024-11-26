@@ -1,0 +1,84 @@
+{% extends "base.html" %}
+
+{% block cuerpo %}
+{% load static %}
+<div class="row"> <!-- La fila -->
+    <div class="col-sm-12 col-md-4 col-lg-4 col-xl-4"> <!-- Columna izquierda -->
+        <center><h1>Registrar Producto</h1></center>
+        <div class="card mx-5"> <!-- La tarjeta -->
+            <div class="card-body">
+                <form action="registrarProducto/" method="POST"> {% csrf_token %}
+                    <div class="form-group">
+                        <input type="number" id="id" name="id" class="form-control" placeholder="ID" minlength="1" maxlength="6" required>
+                    </div>
+                    <br>
+                    <div class="form-group">
+                        <input type="text" id="nombre" name="nombre" class="form-control" placeholder="Nombre" maxlength="20" required>
+                    </div>
+                    <br>
+                    <div class="form-group">
+                        <input type="number" step="0.01" id="precio" name="precio" placeholder="Precio" class="form-control" required>
+                    </div>
+                    <br>
+                    <div class="form-group">
+                        <input type="number" id="cantidad" name="cantidad" class="form-control" placeholder="Cantidad" required>
+                    </div>
+                    <br>
+                    <div class="form-group">
+                        <input type="text" id="descripcion" name="descripcion" class="form-control" placeholder="Descripción" maxlength="100" required>
+                    </div>
+                    <br>
+                    <div class="form-group">
+                        <input type="text" id="categoria" name="categoria" class="form-control" placeholder="Categoría" maxlength="20" required>
+                    </div>
+                    <br>
+                    <div class="form-group">
+                        <input type="number" id="id_provedor" name="id_provedor" class="form-control" placeholder="ID del Proveedor" required>
+                    </div>
+                    <br>
+                    <div class="form-group py-2 text-center">
+                        <button type="submit" class="btn btn-primary btn-dark">Guardar Producto</button>
+                    </div>
+                </form>
+            </div>
+        </div> <!-- La tarjeta -->
+    </div> <!-- Columna izquierda -->
+
+    <div class="col-sm-12 col-md-8 col-lg-8 col-xl-8"> <!-- Columna derecha -->
+        <h1>Lista de Productos</h1>
+        <center><img class="w-50" src="{%static 'img/productos.jpg' %}" alt="corona" width="200"   /></center>
+        <!-- La Tabla -->
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">ID</th>
+                    <th scope="col">Nombre</th>
+                    <th scope="col">Precio</th>
+                    <th scope="col">Cantidad</th>
+                    <th scope="col">Descripción</th>
+                    <th scope="col">Categoría</th>
+                    <th scope="col">ID del Proveedor</th>
+                    <th>Opciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for m in misProductos %}
+                <tr>
+                    <td>{{ forloop.counter }}</td>
+                    <td>{{ m.id }}</td>
+                    <td>{{ m.nombre }}</td>
+                    <td>{{ m.precio }}</td>
+                    <td>{{ m.cantidad }}</td>
+                    <td>{{ m.descripcion }}</td>
+                    <td>{{ m.categoria }}</td>
+                    <td>{{ m.id_provedor }}</td>
+                    <td><a href="seleccionarProducto/{{ m.id }}" class="btn btn-info">Editar</a></td>
+                    <td><a href="borrarProducto/{{ m.id }}" class="btn btn-danger">Borrar</a></td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div> <!-- Columna derecha -->
+</div> <!-- La fila -->
+{% endblock %}

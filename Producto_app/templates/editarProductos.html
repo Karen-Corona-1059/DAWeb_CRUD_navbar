@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+
+{% block cuerpo %}
+<center>
+    <div class="row justify-content-center"> <!-- Fila centrada -->
+        <div class="col-sm-12 col-md-6 col-lg-4 col-xl-4"> <!-- Columna centrada -->
+            <center><h1>Editar Producto</h1></center>
+            <div class="card mx-auto"> <!-- Tarjeta centrada -->
+                <div class="card-body">
+                    <form action="/editarProducto/" method="POST"> {% csrf_token %}
+                        <div class="form-group">
+                            <input type="number" id="id" name="id" class="form-control" 
+                                   value="{{ misProductos.id }}" minlength="1" maxlength="6" readonly required 
+                                   placeholder="ID">
+                        </div>
+                        <br>
+                        <div class="form-group">
+                            <input type="text" id="nombre" name="nombre" class="form-control" 
+                                   value="{{ misProductos.nombre }}" maxlength="20" required 
+                                   placeholder="Nombre">
+                        </div>
+                        <br>
+                        <div class="form-group">
+                            <input type="number" step="0.01" id="precio" name="precio" class="form-control" 
+                                   value="{{ misProductos.precio }}" required 
+                                   placeholder="Precio">
+                        </div>
+                        <br>
+                        <div class="form-group">
+                            <input type="number" id="cantidad" name="cantidad" class="form-control" 
+                                   value="{{ misProductos.cantidad }}" required 
+                                   placeholder="Cantidad">
+                        </div>
+                        <br>
+                        <div class="form-group">
+                            <input type="text" id="descripcion" name="descripcion" class="form-control" 
+                                   value="{{ misProductos.descripcion }}" maxlength="100" required 
+                                   placeholder="Descripción">
+                        </div>
+                        <br>
+                        <div class="form-group">
+                            <input type="text" id="categoria" name="categoria" class="form-control" 
+                                   value="{{ misProductos.categoria }}" maxlength="20" required 
+                                   placeholder="Categoría">
+                        </div>
+                        <br>
+                        <div class="form-group">
+                            <input type="number" id="id_provedor" name="id_provedor" class="form-control" 
+                                   value="{{ misProductos.id_provedor }}" required 
+                                   placeholder="ID del Proveedor">
+                        </div>
+                        <br>
+                        <div class="form-group py-2 text-center">
+                            <button type="submit" class="btn btn-primary btn-dark">Guardar Cambios</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div> <!-- Fin de la columna -->
+    </div> <!-- Fin de la fila -->
+</center>
+{% endblock %}
