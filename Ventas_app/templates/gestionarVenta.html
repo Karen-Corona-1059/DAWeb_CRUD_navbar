@@ -1,0 +1,84 @@
+{% extends "base.html" %}
+
+{% block cuerpo  %}
+{% load static %}
+<div class="row"> <!--la fila-->
+    <div class="col-sm-12 col-md-4 col-lg-4 col-xl-4"><!--Columna izquierda-->
+    <center><h1>Registrar Venta</h1></center>
+        <div class="card mx-5"><!--la tarjeta-->
+            <div class="card-body">
+                <form action="registrarVenta/" method="POST"> {% csrf_token %} <!--Falta Action-->
+                    <center><div class="form-group">
+                        <input type="number" id="id_venta" name="id_venta" class="form-control" placeholder="Id venta" minlength="1" maxlength="6" required>
+                    </div>
+                    <br>
+                    <div class="form-group">
+                        <input type="number" id="id_producto" name="id_producto" class="form-control" placeholder="Id Producto" maxlength="100" required>
+                    </div>
+                    <br>
+                    <div class="form-group">
+                        <input type="number" id="id_cliente" name="id_cliente" class="form-control" placeholder="id_cliente" maxlength="100" required>
+                    </div>
+                    <br>
+                    <div class="form-group">
+                        <input type="number" id="id_sucursal" name="id_sucursal" class="form-control" placeholder="id_sucursal" maxlength="100" required>
+                    </div>
+                    <br>
+                    <div class="form-group">
+                        <input type="number" id="id_empleado" name="id_empleado" class="form-control" placeholder="id_empleado" maxlength="100" required>
+                    </div>
+                    <br>
+                    <div class="form-group">
+                        <input type="number" id="Total" name="Total" class="form-control" placeholder="Total" maxlength="100" required>
+                    </div>
+                    <br>
+                    <div class="form-group">
+                        <input type="date" id="Fecha" name="Fecha" class="form-control" placeholder="Fecha" maxlength="100" required>
+                    </div>
+                    <hr></hr>
+                    <div class="form-group py-2">
+                        <button type="submit" class="btn btn-primary btn-dark">Guardar Venta</button>
+                    </div>
+                </center>
+                </form>
+            </div>
+        </div><!--la tarjeta-->
+    </div><!--Columna izquierda-->
+    <div class="col-sm-12 col-md-8 col-lg-8 col-xl-8"><!--Columna Derecha-->
+        <h1>Lista de Ventas</h1>
+        <center><img class="w-50" src="{%static 'img/ventas.jpg' %}" alt="corona" width="200"  /></center>
+        <!--La Tabla-->
+            <table class="table table-striped">
+                <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Id_Venta</th>
+                    <th scope="col">id_producto</th>
+                    <th scope="col">id_cliente</th>
+                    <th scope="col">id_sucursal</th>
+                    <th scope="col">id_empleado</th>
+                    <th scope="col">Total</th>
+                    <th scope="col">Fecha</th>
+                    <th>Opciones</th>
+                </tr>
+                </thead>
+                <tbody>
+                    {% for m in misVentas  %}
+                    <tr>
+                        <td>{{forloop.counter}}</td>
+                        <td>{{m.id_venta}}</td>
+                        <td>{{m.id_producto}}</td>
+                        <td>{{m.id_cliente}}</td>
+                        <td>{{m.id_sucursal}}</td>
+                        <td>{{m.id_empleado}}</td>
+                        <td>{{m.Total}}</td>
+                        <td>{{m.Fecha}}</td>
+                        <td> <a href="seleccionarVenta/{{m.id_venta}}" class="btn btn-info">Editar</a></td><!--falta-->
+                        <td> <a href="borrarVenta/{{m.id_venta}}" class="btn btn-danger">Borrar</a></td><!--falta-->
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div><!--Columna Derecha-->
+</div><!--la fila-->
+{% endblock  %}
